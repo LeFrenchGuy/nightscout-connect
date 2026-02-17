@@ -91,6 +91,7 @@ Development use typically consists of commands like this:
 
 ```
 ../cgm-remote-monitor/node_modules/.bin/env-cmd -f ../minimed-envs/subject.env nightscout-connect capture logs
+..\cgm-remote-monitor\node_modules\.bin\env-cmd -f .\subject.env nightscout-connect capture logs
 
 ```
 Where `subject.env` typically consists of something like this:
