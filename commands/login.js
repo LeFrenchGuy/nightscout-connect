@@ -110,12 +110,18 @@ async function main (argv) {
   // Step 3: Exchange code for tokens
   var loginData = await auth.exchangeCodeForTokens(ssoConfig, baseUrl, authCode, pkce.codeVerifier, axios);
 
-  // Step 4: Save to file
+  // Step 4: Save to MongoDB (primary) and attempt file save as backup
+  var tokenStore = require('../lib/sources/minimedcarelink/token-store');
+  var store = tokenStore.create();
+  if (store) {
+    await store.save(loginData);
+  }
+
+  // Best-effort file save (oauth.saveLoginData handles its own errors silently)
   oauth.saveLoginData(outputPath, loginData);
+
   console.log('');
-  console.log('[Login] Success! Saved tokens to', outputPath);
-  console.log('[Login] You can now use this with:');
-  console.log('  CONNECT_CARELINK_LOGIN_DATA=' + outputPath);
+  console.log('[Login] Success! Tokens saved to MongoDB.');
   console.log('');
 
   // Decode and show token info
