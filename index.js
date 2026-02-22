@@ -74,7 +74,7 @@ function manage (env, ctx) {
   }
 
 
-  ctx.bus.on('tick', console.log.bind(console, 'DEBUG nightscout-connect'));
+  if (process.env.LOG_LEVEL === 'debug') ctx.bus.on('tick', console.log.bind(console, 'DEBUG nightscout-connect'));
   ctx.bus.once('data-processed', handle.run);
   ctx.bus.once('tearDown', handle.stop);
   // console.log(things);

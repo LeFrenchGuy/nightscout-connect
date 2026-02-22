@@ -52,6 +52,21 @@ For now there are two "output" devices available, internal Nightscout as a
 plugin, or external Nightscout as a sidecar from the commnandline.
 We will consider additional output targets.
 
+### Log Level
+
+By default the plugin logs nothing. Set `LOG_LEVEL=debug` to enable verbose logging (tick events, data-loaded snapshots):
+
+```
+LOG_LEVEL=debug
+```
+
+In Docker Compose, add it only to the Nightscout service so it doesn't affect other containers:
+
+```yaml
+environment:
+  LOG_LEVEL: "debug"
+```
+
 ### From Nightscout
 
 This is a Nightscout plugin.  Enable the plugin by including the word `connect`
