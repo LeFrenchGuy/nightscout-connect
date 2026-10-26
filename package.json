@@ -41,5 +41,8 @@
     "uid": "^2.0.2",
     "xstate": "^4.37.1",
     "yargs": "^17.7.3"
+  },
+  "optionalDependencies": {
+    "mongodb": ">=4.0.0"
   }
 }

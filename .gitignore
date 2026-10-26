@@ -6,3 +6,7 @@ node_modules/
 
 # Private local validation credentials, databases/config and reports
 .local/
+logindata.json
+subject.env
+output.log
+logs/
